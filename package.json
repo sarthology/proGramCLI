@@ -2,7 +2,7 @@
 	"name": "program",
 	"version": "0.0.1",
 	"description": "",
-	"main": "index.js",
+	"main": "main/main.js",
 	"bin": {
 		"program": "./bin/cli.js"
 	},
