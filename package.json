@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/sarthology/proGram/issues"
   },
-  "homepage": "https://github.com/sarthology/proGram#readme"
+  "homepage": "https://github.com/sarthology/proGram#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.17.1"
+  }
 }
