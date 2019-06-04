@@ -1,10 +1,11 @@
 {
-	"name": "proGram",
+	"name": "program",
 	"version": "0.0.1",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "electron main/main.js --not-packaged=true",
+		"dev": "electron main/main.js --not-packaged=true --debug=true"
 	},
 	"repository": {
 		"type": "git",
@@ -29,6 +30,7 @@
 		]
 	},
 	"devDependencies": {
+		"electron": "4.0.1",
 		"eslint": "^5.16.0",
 		"eslint-config-prettier": "^4.2.0",
 		"eslint-plugin-prettier": "^3.1.0",
