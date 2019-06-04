@@ -3,6 +3,9 @@
 	"version": "0.0.1",
 	"description": "",
 	"main": "index.js",
+	"bin": {
+		"program": "./bin/cli.js"
+	},
 	"scripts": {
 		"start": "electron main/main.js --not-packaged=true",
 		"dev": "electron main/main.js --not-packaged=true --debug=true"
