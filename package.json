@@ -40,5 +40,8 @@
 		"husky": "^2.3.0",
 		"lint-staged": "^8.1.7",
 		"prettier": "^1.17.1"
+	},
+	"dependencies": {
+		"handlebars": "^4.1.2"
 	}
 }

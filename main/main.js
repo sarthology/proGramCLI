@@ -1,12 +1,13 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
-const main = path.join(__dirname, '..', 'main', 'index.html');
+const main = path.join(__dirname, '..', 'main', 'app/index.html');
 
 function createWindow() {
 	let win = new BrowserWindow({
-		width: 800,
-		height: 600,
+		width: 400,
+		height: 800,
+		titleBarStyle: 'hidden',
 		webPreferences: {
 			nodeIntegration: true
 		}

@@ -1,0 +1,23 @@
+.image img{
+    width: 100%;
+}
+.style{
+    margin-left: 10px;
+    padding: 5px;
+    font-family: sans-serif;
+    cursor: pointer;
+    text-align: center;
+}
+.filters{
+    display: flex;
+    overflow: scroll;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.demo{
+    width:100px
+}
+figure{
+    margin: 0;
+}
