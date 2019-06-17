@@ -1,23 +1,51 @@
-.image img{
-    width: 100%;
+@font-face {
+	font-family: blenda;
+	src: url(../fonts/BlendaScript.otf);
 }
-.style{
-    margin-left: 10px;
-    padding: 5px;
-    font-family: sans-serif;
-    cursor: pointer;
+@font-face {
+	font-family: fira;
+	src: url(../fonts/FiraSans-UltraLight.otf);
+}
+*{
+    font-family: 'fira'
+}
+body{
+    margin: 0;
+}
+header{
+    padding: 10px 0;
+    border-bottom: 1px solid #E3E3E3
+}
+#view{
+    margin-top:1px;
+}
+.image img {
+	width: 100%;
+}
+.style {
+	margin-left: 10px;
+	padding: 5px;
+	font-family: sans-serif;
+	cursor: pointer;
+	text-align: center;
+}
+.title{
+    font-family: 'blenda';
     text-align: center;
+    font-weight: 100;
+    margin: 0;
+    font-size: 24px;
 }
-.filters{
-    display: flex;
-    overflow: scroll;
+.filters {
+	display: flex;
+	overflow: scroll;
 }
 ::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
-.demo{
-    width:100px
+.demo {
+	width: 100px;
 }
-figure{
-    margin: 0;
+figure {
+	margin: 0;
 }
