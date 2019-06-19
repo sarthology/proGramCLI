@@ -29,6 +29,9 @@ header{
 	cursor: pointer;
 	text-align: center;
 }
+.style p{
+	margin: 5px;
+}
 .title{
     font-family: 'blenda';
     text-align: center;

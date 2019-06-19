@@ -5,8 +5,9 @@ const main = path.join(__dirname, '..', 'main', 'app/index.html');
 
 function createWindow() {
 	let win = new BrowserWindow({
+		title: 'Parista',
 		width: 400,
-		height: 800,
+		height: 700,
 		titleBarStyle: 'hidden',
 		webPreferences: {
 			nodeIntegration: true
