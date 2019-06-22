@@ -1,10 +1,10 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 
 const main = path.join(__dirname, '..', 'main', 'app/index.html');
-
+let win;
 function createWindow() {
-	let win = new BrowserWindow({
+	win = new BrowserWindow({
 		title: 'Parista',
 		width: 400,
 		height: 700,
@@ -16,5 +16,9 @@ function createWindow() {
 
 	win.loadFile(main);
 }
-
+ipcMain.on('getImage', (event, arg) => {
+	dialog.showOpenDialog({ properties: ['openFile'] }, filePaths => {
+		win.webContents.send('imgAdded', filePaths[0]);
+	});
+});
 app.on('ready', createWindow);

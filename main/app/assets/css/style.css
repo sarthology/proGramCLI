@@ -52,3 +52,26 @@ header{
 figure {
 	margin: 0;
 }
+.img-upload{
+	width: 50%;
+	background: #5a94ff;
+	text-align: center;
+	color: #fff;
+	font-weight: 900;
+	margin: 0 auto;
+	padding: 12px 20px;
+	margin-top: 50px;
+	cursor: pointer;
+  }
+  .upload-message{
+	text-align: center;
+    font-size: 20px;
+    color: #868080;
+  }
+  .icon-camera{
+	  display: grid;
+  }
+  .icon-camera img{
+	width: 200px;
+    margin: 130px auto 10px;
+  }

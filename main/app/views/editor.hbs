@@ -1,15 +1,15 @@
 <div class="image">
     <figure id="canvas">
-        <img src="assets/img/test.jpg" alt="" />
+        <img src="{{instaImage}}" alt="" />
     </figure>
 </div>
-<div class="filters">
+<div class=" filters">
     {{#each filters}}
-        <div class="style" onclick="changeFilter('{{class}}')">
-           <p>{{name}}</p>
-           <figure class="{{class}}">
-                <img src="assets/img/test.jpg" class="demo" alt="">
-           </figure>
-        </div>
+    <div class="style" onclick="changeFilter('{{class}}')">
+        <p>{{name}}</p>
+        <figure class="{{class}}">
+            <img src="{{../instaImage}}" class="demo" alt="">
+        </figure>
+    </div>
     {{/each}}
 </div>
