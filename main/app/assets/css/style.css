@@ -6,21 +6,29 @@
 	font-family: fira;
 	src: url(../fonts/FiraSans-UltraLight.otf);
 }
-*{
-    font-family: 'fira'
+* {
+	font-family: 'fira';
 }
-body{
-    margin: 0;
+body {
+	margin: 0;
 }
-header{
-    padding: 10px 0;
-    border-bottom: 1px solid #E3E3E3
+header {
+	padding: 10px 0;
+	border-bottom: 1px solid #e3e3e3;
 }
-#view{
-    margin-top:1px;
+#view {
+	margin-top: 1px;
+}
+.darkBackground {
+	background: #535358;
 }
 .image img {
 	width: 100%;
+}
+.image {
+	width: 400px;
+	height: 400px;
+	overflow: hidden;
 }
 .style {
 	margin-left: 10px;
@@ -29,19 +37,25 @@ header{
 	cursor: pointer;
 	text-align: center;
 }
-.style p{
+.style figure {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+}
+.style p {
 	margin: 5px;
 }
-.title{
-    font-family: 'blenda';
-    text-align: center;
-    font-weight: 100;
-    margin: 0;
-    font-size: 24px;
+.title {
+	font-family: 'blenda';
+	text-align: center;
+	font-weight: 100;
+	margin: 0;
+	font-size: 24px;
 }
 .filters {
 	display: flex;
 	overflow: scroll;
+	margin: 15px 0;
 }
 ::-webkit-scrollbar {
 	display: none;
@@ -52,7 +66,7 @@ header{
 figure {
 	margin: 0;
 }
-.img-upload{
+.img-upload {
 	width: 50%;
 	background: #5a94ff;
 	text-align: center;
@@ -62,16 +76,57 @@ figure {
 	padding: 12px 20px;
 	margin-top: 50px;
 	cursor: pointer;
-  }
-  .upload-message{
+}
+.upload-message {
 	text-align: center;
-    font-size: 20px;
-    color: #868080;
-  }
-  .icon-camera{
-	  display: grid;
-  }
-  .icon-camera img{
+	font-size: 20px;
+	color: #868080;
+}
+.icon-camera {
+	display: grid;
+}
+.icon-camera img {
 	width: 200px;
-    margin: 130px auto 10px;
-  }
+	margin: 130px auto 10px;
+}
+
+.adjustImg {
+	width: 400px;
+	height: 600px;
+}
+
+.main-controls .controls {
+	padding: 15px;
+	text-align: center;
+	font-weight: bolder;
+	cursor: pointer;
+}
+.back {
+	border-top: 1px solid #dedede;
+	color: #737377;
+	background: white;
+}
+.add-filters {
+	background: #5a94ff;
+	color: white;
+}
+.main-controls {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	z-index: 10;
+}
+.rotate img {
+	width: 20px;
+	padding: 10px;
+	background: #151414d4;
+	position: absolute;
+	margin-top: -70px;
+	right: 20px;
+	z-index: 10;
+}
+.rotate {
+	cursor: pointer;
+}

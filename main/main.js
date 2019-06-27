@@ -18,7 +18,7 @@ function createWindow() {
 }
 ipcMain.on('getImage', (event, arg) => {
 	dialog.showOpenDialog({ properties: ['openFile'] }, filePaths => {
-		win.webContents.send('imgAdded', filePaths[0]);
+		if (filePaths) win.webContents.send('imgAdded', filePaths[0]);
 	});
 });
 app.on('ready', createWindow);
