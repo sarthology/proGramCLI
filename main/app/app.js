@@ -20,9 +20,12 @@ let viewport;
 const editor = readFileSync(path.resolve(__dirname, './views/editor.hbs'));
 const uploader = readFileSync(path.resolve(__dirname, './views/uploader.hbs'));
 const adjust = readFileSync(path.resolve(__dirname, './views/adjust.hbs'));
+const onboarding = readFileSync(
+	path.resolve(__dirname, './views/onboarding.hbs')
+);
 
 window.onload = event => {
-	changeView(uploader);
+	changeView(onboarding);
 };
 
 ipcRenderer.on('imgAdded', (event, arg) => {
@@ -34,6 +37,10 @@ const changeFilter = selectedFilter => {
 	let canvas = document.getElementById('canvas');
 	canvas.classList = '';
 	canvas.classList.add(selectedFilter);
+};
+
+const saveProfile = () => {
+	changeView(uploader);
 };
 
 const imgUpload = () => {
