@@ -20,6 +20,7 @@ let viewport;
 const editor = readFileSync(path.resolve(__dirname, './views/editor.hbs'));
 const uploader = readFileSync(path.resolve(__dirname, './views/uploader.hbs'));
 const adjust = readFileSync(path.resolve(__dirname, './views/adjust.hbs'));
+const profile = readFileSync(path.resolve(__dirname, './views/profile.hbs'));
 const onboarding = readFileSync(
 	path.resolve(__dirname, './views/onboarding.hbs')
 );
@@ -41,6 +42,10 @@ const changeFilter = selectedFilter => {
 
 const saveProfile = () => {
 	changeView(uploader);
+};
+
+const showProfile = () => {
+	changeView(profile);
 };
 
 const imgUpload = () => {
