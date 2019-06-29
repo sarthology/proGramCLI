@@ -29,6 +29,7 @@ const adjust = readFileSync(path.resolve(__dirname, './views/adjust.hbs'));
 const onboarding = readFileSync(
 	path.resolve(__dirname, './views/onboarding.hbs')
 );
+const generate = readFileSync(path.resolve(__dirname, './views/generate.hbs'));
 const initialize = readFileSync(
 	path.resolve(__dirname, './views/initialize.hbs')
 );
@@ -85,20 +86,24 @@ const changeFilter = selectedFilter => {
 const saveProfile = () => {
 	profileAdjust.result({ type: 'base64', size: 'original' }).then(newImage => {
 		let profileImage = newImage;
-		console.log(profileImage);
+
+		const name = document.getElementById('name').value;
+		const bio = document.getElementById('bio').value;
+
+		const imagePath = path.resolve(imagesDir, name + '.png');
+		const imageDataURI = newImage.replace(/^data:image\/png;base64,/, '');
+		fs.writeFileSync(imagePath, imageDataURI, 'base64');
+
+		const profile = {
+			name,
+			bio,
+			profilePic: imagePath
+		};
+
+		fs.writeFileSync(userFile, JSON.stringify(profile, null, 4));
+
 		changeView(uploader);
 	});
-	// const name = document.getElementById('name').value;
-	// const bio = document.getElementById('bio').value;
-
-	// const profile = {
-	// 	name,
-	// 	bio
-	// };
-
-	// fs.writeFileSync(userFile, JSON.stringify(profile, null, 4));
-
-	// changeView(uploader);
 };
 
 const showProfile = () => {
@@ -123,7 +128,7 @@ const showProfile = () => {
 
 	fs.writeFileSync(feedFile, JSON.stringify(feedData));
 
-	changeView(profile);
+	changeView(generate);
 };
 
 const imgUpload = () => {
