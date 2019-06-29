@@ -69,6 +69,11 @@ ipcRenderer.on('profileAdded', (event, arg) => {
 
 ipcRenderer.on('directoryAdded', (event, dir) => {
 	outputDir = dir;
+
+	const source = path.resolve(__dirname, '..', '..', 'program');
+
+	fs.copySync(source, outputDir);
+
 	if (!fs.existsSync(config)) {
 		fs.writeFileSync(
 			config,
