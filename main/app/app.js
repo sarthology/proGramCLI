@@ -29,7 +29,7 @@ const adjust = readFileSync(path.resolve(__dirname, './views/adjust.hbs'));
 const onboarding = readFileSync(
 	path.resolve(__dirname, './views/onboarding.hbs')
 );
-const profile = readFileSync(path.resolve(__dirname, './views/profile.hbs'));
+const generate = readFileSync(path.resolve(__dirname, './views/generate.hbs'));
 const initialize = readFileSync(
 	path.resolve(__dirname, './views/initialize.hbs')
 );
@@ -128,7 +128,7 @@ const showProfile = () => {
 
 	fs.writeFileSync(feedFile, JSON.stringify(feedData));
 
-	changeView(profile);
+	changeView(generate);
 };
 
 const imgUpload = () => {
