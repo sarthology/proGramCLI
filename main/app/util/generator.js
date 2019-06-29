@@ -30,13 +30,15 @@ const generator = (profile, feed) => {
       <div class="divider"></div>
 
       <div class="proto-graph">
-        ${feed.map(
-					post => `<div class="program">
+        ${feed
+					.map(
+						post => `<div class="program">
         <figure class="${post.filter}">
           <img src="${post.imagePath}" alt="" />
         </figure>
       </div>`
-				)}
+					)
+					.join('')}
       </div>
     </body>
   </html>
