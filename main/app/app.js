@@ -41,6 +41,16 @@ const changeFilter = selectedFilter => {
 };
 
 const saveProfile = () => {
+	const name = document.getElementById('name').value;
+	const bio = document.getElementById('bio').value;
+
+	const profile = {
+		name,
+		bio
+	};
+
+	fs.writeFileSync('profile.json', JSON.stringify(profile));
+
 	changeView(uploader);
 };
 
