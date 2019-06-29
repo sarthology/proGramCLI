@@ -18,6 +18,7 @@ const readFileSync = require('./util/readFileSync');
 
 let instaImage = null;
 let viewport;
+let filter = null;
 let isProfile = false;
 let isFeed = false;
 
@@ -59,6 +60,7 @@ const changeFilter = selectedFilter => {
 	let canvas = document.getElementById('canvas');
 	canvas.classList = '';
 	canvas.classList.add(selectedFilter);
+	filter = selectedFilter;
 
 	// save currentPost filter
 	currentPost.filter = selectedFilter;
@@ -120,9 +122,13 @@ const goBackTo = page => {
 };
 const changeView = view => {
 	const template = handlebars.compile(view, { strict: true });
-	const result = template({ filters: filters, instaImage: instaImage });
-	document.getElementById('view').innerHTML = result;
+	const result = template({
+		filters: filters,
+		instaImage: instaImage,
+		filter: filter
+	});
 
+	document.getElementById('view').innerHTML = result;
 	if (view === adjust) cropImage(instaImage);
 };
 
