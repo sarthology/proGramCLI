@@ -275,3 +275,18 @@ textarea:focus {
 		transform: none;
 	}
 }
+
+.open-browser {
+	background: #46ea8b;
+	margin-top: 10px;
+}
+.dano-bye img {
+	width: 200px;
+}
+.finish-head {
+	font-size: 25px;
+	margin: 40px auto;
+}
+.danob {
+	width: 75%;
+}
