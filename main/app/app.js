@@ -68,7 +68,7 @@ ipcRenderer.on('profileAdded', (event, arg) => {
 });
 
 ipcRenderer.on('directoryAdded', (event, dir) => {
-	outputDir = dir;
+	outputDir = path.resolve(dir, 'program');
 
 	const source = path.resolve(__dirname, '..', '..', 'program');
 
@@ -78,7 +78,7 @@ ipcRenderer.on('directoryAdded', (event, dir) => {
 		fs.writeFileSync(
 			config,
 			JSON.stringify({
-				programPath: dir
+				programPath: outputDir
 			})
 		);
 	}
