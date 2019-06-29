@@ -108,6 +108,8 @@ const saveProfile = () => {
 		const userFile = path.resolve(dataDir, 'profile.json');
 		const imagePath = path.resolve(imageDir, name + '.png');
 
+		const relativePath = path.relative(outputDir, imagePath);
+
 		if (!fs.existsSync(dataDir)) fs.ensureDirSync(dataDir);
 		if (!fs.existsSync(imageDir)) fs.ensureDirSync(imageDir);
 
@@ -117,7 +119,7 @@ const saveProfile = () => {
 		const userData = {
 			name,
 			bio,
-			profilePic: imagePath
+			profilePic: relativePath
 		};
 
 		fs.writeFileSync(userFile, JSON.stringify(userData, null, 4));
@@ -149,7 +151,7 @@ const showProfile = () => {
 	const imageDataURI = instaImage.replace(/^data:image\/png;base64,/, '');
 	fs.writeFileSync(imagePath, imageDataURI, 'base64');
 
-	currentPost.imagePath = imagePath;
+	currentPost.imagePath = path.relative(outputDir, imagePath);
 
 	currentPost.date = new Date();
 	feedData.push(currentPost);
