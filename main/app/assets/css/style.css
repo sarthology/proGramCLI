@@ -16,6 +16,23 @@ header {
 	padding: 10px 0;
 	border-bottom: 1px solid #e3e3e3;
 }
+.content {
+	text-align: center;
+}
+.profile-header {
+	margin-top: 50px;
+}
+.created-image img {
+	object-fit: cover;
+	height: 300px;
+	width: 300px;
+}
+.created-image figure {
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+	margin: 25px auto 10px;
+}
 #view {
 	margin-top: 1px;
 }
