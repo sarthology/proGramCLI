@@ -7,6 +7,7 @@ const { ipcRenderer } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
+const mkdirp = require('mkdirp');
 
 const rawdata = fs.readFileSync(
 	path.resolve(__dirname, './assets/data/filters.json')
@@ -34,6 +35,8 @@ const outputDir = path.resolve(__dirname, '..', '..', 'output');
 const userFile = path.resolve(outputDir, 'profile.json');
 const feedFile = path.resolve(outputDir, 'feed.json');
 const imagesDir = path.resolve(outputDir, 'assets', 'images');
+
+if (!fs.existsSync(outputDir)) mkdirp.sync(imagesDir);
 
 if (fs.existsSync(userFile)) isProfile = true;
 if (fs.existsSync(feedFile)) isFeed = true;
