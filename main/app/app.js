@@ -76,6 +76,22 @@ const saveProfile = () => {
 };
 
 const showProfile = () => {
+	// generate random name/id for cropped image
+	const seed = crypto.randomBytes(20);
+
+	const uniqueName = crypto
+		.createHash('sha1')
+		.update(seed)
+		.digest('hex');
+
+	const imagePath = path.resolve(imagesDir, uniqueName + '.png');
+
+	// save the cropped image
+	const imageDataURI = instaImage.replace(/^data:image\/png;base64,/, '');
+	fs.writeFileSync(imagePath, imageDataURI, 'base64');
+
+	currentPost.imagePath = imagePath;
+
 	currentPost.date = new Date();
 	feedData.push(currentPost);
 
@@ -91,22 +107,6 @@ const imgUpload = () => {
 const addFilters = () => {
 	document.getElementById('view').removeAttribute('class');
 	viewport.result({ type: 'base64', size: 'original' }).then(newImage => {
-		// generate random name/id for cropped image
-		const seed = crypto.randomBytes(20);
-
-		const uniqueName = crypto
-			.createHash('sha1')
-			.update(seed)
-			.digest('hex');
-
-		const imagePath = path.resolve(imagesDir, uniqueName + '.png');
-
-		// save the cropped image
-		const imageDataURI = newImage.replace(/^data:image\/png;base64,/, '');
-		fs.writeFileSync(imagePath, imageDataURI, 'base64');
-
-		currentPost.imagePath = imagePath;
-
 		instaImage = newImage;
 		changeView(editor);
 	});
