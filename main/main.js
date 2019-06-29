@@ -16,6 +16,13 @@ function createWindow() {
 
 	win.loadFile(main);
 }
+
+ipcMain.on('getDirectory', (event, arg) => {
+	dialog.showOpenDialog({ properties: ['openDirectory'] }, dir => {
+		if (dir) win.webContents.send('directoryAdded', dir[0]);
+	});
+});
+
 ipcMain.on('getImage', (event, arg) => {
 	dialog.showOpenDialog({ properties: ['openFile'] }, filePaths => {
 		if (filePaths) win.webContents.send('imgAdded', filePaths[0]);

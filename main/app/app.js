@@ -5,9 +5,13 @@ const handlebars = require('handlebars');
 const Croppie = require('croppie');
 const { ipcRenderer } = require('electron');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const crypto = require('crypto');
 const mkdirp = require('mkdirp');
+const os = require('os');
+
+const homedir = os.homedir();
+const config = path.resolve(homedir, '.programrc.json');
 
 const rawdata = fs.readFileSync(
 	path.resolve(__dirname, './assets/data/filters.json')
@@ -16,11 +20,11 @@ const filters = JSON.parse(rawdata);
 
 const readFileSync = require('./util/readFileSync');
 
+const currentPost = {};
 let instaImage = null;
 let viewport, profileAdjust;
 let filter = null;
-let isProfile = false;
-let isFeed = false;
+let outputDir;
 
 //Views
 const editor = readFileSync(path.resolve(__dirname, './views/editor.hbs'));
@@ -34,24 +38,15 @@ const initialize = readFileSync(
 	path.resolve(__dirname, './views/initialize.hbs')
 );
 
-// path to userprofile and feed
-const outputDir = path.resolve(__dirname, '..', '..', 'output');
-const userFile = path.resolve(outputDir, 'profile.json');
-const feedFile = path.resolve(outputDir, 'feed.json');
-const imagesDir = path.resolve(outputDir, 'assets', 'images');
-
-if (!fs.existsSync(outputDir)) mkdirp.sync(imagesDir);
-
-if (fs.existsSync(userFile)) isProfile = true;
-if (fs.existsSync(feedFile)) isFeed = true;
-
-// parse existing feed if it exists else initialize it to empty array
-const feedData = isFeed ? JSON.parse(fs.readFileSync(feedFile)) : [];
-const currentPost = {};
-
 window.onload = event => {
-	// if profile already exists then allow user to directly add images
-	isProfile ? changeView(uploader) : changeView(initialize);
+	if (fs.existsSync(config)) {
+		outputDir = JSON.parse(fs.readFileSync(config)).programPath;
+
+		const profile = path.resolve(outputDir, 'data', 'profile.json');
+		fs.existsSync(profile) ? changeView(uploader) : changeView(onboarding);
+	} else {
+		changeView(initialize);
+	}
 };
 
 ipcRenderer.on('imgAdded', (event, arg) => {
@@ -73,6 +68,18 @@ ipcRenderer.on('profileAdded', (event, arg) => {
 	});
 });
 
+ipcRenderer.on('directoryAdded', (event, dir) => {
+	outputDir = dir;
+	if (!fs.existsSync(config)) {
+		fs.writeFileSync(
+			config,
+			JSON.stringify({
+				programPath: dir
+			})
+		);
+	}
+});
+
 const changeFilter = selectedFilter => {
 	let canvas = document.getElementById('canvas');
 	canvas.classList = '';
@@ -90,17 +97,26 @@ const saveProfile = () => {
 		const name = document.getElementById('name').value;
 		const bio = document.getElementById('bio').value;
 
-		const imagePath = path.resolve(imagesDir, name + '.png');
+		console.log(outputDir);
+		const dataDir = path.resolve(outputDir, 'data');
+		const imageDir = path.resolve(outputDir, 'assets', 'images');
+
+		const userFile = path.resolve(dataDir, 'profile.json');
+		const imagePath = path.resolve(imageDir, name + '.png');
+
+		if (!fs.existsSync(dataDir)) mkdirp.sync(dataDir);
+		if (!fs.existsSync(imageDir)) mkdirp.sync(imageDir);
+
 		const imageDataURI = newImage.replace(/^data:image\/png;base64,/, '');
 		fs.writeFileSync(imagePath, imageDataURI, 'base64');
 
-		const profile = {
+		const userData = {
 			name,
 			bio,
 			profilePic: imagePath
 		};
 
-		fs.writeFileSync(userFile, JSON.stringify(profile, null, 4));
+		fs.writeFileSync(userFile, JSON.stringify(userData, null, 4));
 
 		changeView(uploader);
 	});
@@ -115,7 +131,15 @@ const showProfile = () => {
 		.update(seed)
 		.digest('hex');
 
-	const imagePath = path.resolve(imagesDir, uniqueName + '.png');
+	const imageDir = path.resolve(outputDir, 'assets', 'images');
+
+	const imagePath = path.resolve(imageDir, uniqueName + '.png');
+	const feedFile = path.resolve(outputDir, 'data', 'feed.json');
+
+	// load existing feed if it exists
+	const feedData = fs.existsSync(feedFile)
+		? JSON.parse(fs.readFileSync(feedFile))
+		: [];
 
 	// save the cropped image
 	const imageDataURI = instaImage.replace(/^data:image\/png;base64,/, '');
@@ -148,8 +172,10 @@ const uploadProfile = () => {
 };
 
 const onboardMe = () => {
+	ipcRenderer.send('getDirectory');
 	changeView(onboarding);
 };
+
 const goBackTo = page => {
 	document.getElementById('view').removeAttribute('class');
 	page === 'adjust' ? changeView(adjust) : changeView(uploader);
