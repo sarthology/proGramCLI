@@ -21,4 +21,11 @@ ipcMain.on('getImage', (event, arg) => {
 		if (filePaths) win.webContents.send('imgAdded', filePaths[0]);
 	});
 });
+
+ipcMain.on('uploadProfile', (event, arg) => {
+	dialog.showOpenDialog({ properties: ['openFile'] }, filePaths => {
+		if (filePaths) win.webContents.send('profileAdded', filePaths[0]);
+	});
+});
+
 app.on('ready', createWindow);

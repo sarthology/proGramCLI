@@ -1,23 +1,18 @@
 <div class="content">
-    <div class="user-icon">
-        <img src="assets/img/user.svg" alt="">
+    <div class="upload" onclick="uploadProfile()">
+        <p>Click to Upload Image</p>
     </div>
-
-    <div class="group">
-        <input type="text" required>
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label>Name</label>
+    <div id="adjustProfile">
     </div>
-
-    <div class="group">
-        <input type="text" required>
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label>About</label>
+    <div class="input-group">
+        <div class="name">
+            <input type="text" placeholder="Display Name" id="">
+        </div>
+        <div class="bio">
+            <textarea placeholder="Bio"></textarea>
+        </div>
     </div>
-
     <div class="img-upload" onclick="saveProfile()">
-        <span>Register</span>
+        <span>Upload Image</span>
     </div>
 </div>

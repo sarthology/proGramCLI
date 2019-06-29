@@ -15,14 +15,16 @@ const filters = JSON.parse(rawdata);
 const readFileSync = require('./util/readFileSync');
 
 let instaImage = null;
-let viewport;
+let viewport, profileAdjust;
 //Views
 const editor = readFileSync(path.resolve(__dirname, './views/editor.hbs'));
 const uploader = readFileSync(path.resolve(__dirname, './views/uploader.hbs'));
 const adjust = readFileSync(path.resolve(__dirname, './views/adjust.hbs'));
-const profile = readFileSync(path.resolve(__dirname, './views/profile.hbs'));
 const onboarding = readFileSync(
 	path.resolve(__dirname, './views/onboarding.hbs')
+);
+const initialize = readFileSync(
+	path.resolve(__dirname, './views/initialize.hbs')
 );
 
 window.onload = event => {
@@ -34,6 +36,20 @@ ipcRenderer.on('imgAdded', (event, arg) => {
 	changeView(adjust);
 });
 
+ipcRenderer.on('profileAdded', (event, arg) => {
+	document.getElementsByClassName('upload')[0].style = 'display:none';
+	document.getElementById('adjustProfile').style = 'display:block';
+	profileAdjust = new Croppie(document.getElementById('adjustProfile'), {
+		url: arg,
+		enableOrientation: true,
+		viewport: {
+			width: 150,
+			height: 150,
+			type: 'circle'
+		}
+	});
+});
+
 const changeFilter = selectedFilter => {
 	let canvas = document.getElementById('canvas');
 	canvas.classList = '';
@@ -41,7 +57,11 @@ const changeFilter = selectedFilter => {
 };
 
 const saveProfile = () => {
-	changeView(uploader);
+	profileAdjust.result({ type: 'base64', size: 'original' }).then(newImage => {
+		let profileImage = newImage;
+		console.log(profileImage);
+		changeView(uploader);
+	});
 };
 
 const showProfile = () => {
@@ -59,10 +79,16 @@ const addFilters = () => {
 		changeView(editor);
 	});
 };
+
+const uploadProfile = () => {
+	ipcRenderer.send('uploadProfile');
+};
+
 const goBackTo = page => {
 	document.getElementById('view').removeAttribute('class');
 	page === 'adjust' ? changeView(adjust) : changeView(uploader);
 };
+
 const changeView = view => {
 	const template = handlebars.compile(view, { strict: true });
 	const result = template({ filters: filters, instaImage: instaImage });
