@@ -208,3 +208,70 @@ textarea:focus {
 	margin: 0 auto;
 	margin-top: 65px;
 }
+.dano img {
+	width: 280px;
+	margin: 0px auto;
+	-webkit-animation-name: danny;
+	animation-name: danny;
+	-webkit-animation-duration: 2s;
+	animation-duration: 2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+.dano {
+	display: grid;
+	margin-bottom: 100px;
+}
+
+.welcome {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: white;
+	top: 0;
+}
+.logo {
+	margin-top: 80px;
+}
+.logo h1 {
+	text-align: center;
+	font-family: 'blenda';
+	margin: 40px 0;
+}
+
+@keyframes danny {
+	from {
+		margin-left: -180px;
+	}
+
+	10% {
+		transform: rotate(15deg);
+	}
+	25% {
+		transform: rotate(-5deg);
+	}
+	30% {
+		transform: rotate(15deg);
+	}
+	40% {
+		transform: rotate(-5deg);
+	}
+
+	50% {
+		transform: rotate(15deg);
+	}
+
+	65% {
+		transform: rotate(-5deg);
+	}
+
+	75% {
+		transform: rotate(15deg);
+	}
+
+	to {
+		margin-left: 60px;
+		transform: none;
+	}
+}

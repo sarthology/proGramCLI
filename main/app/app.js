@@ -50,7 +50,7 @@ const currentPost = {};
 
 window.onload = event => {
 	// if profile already exists then allow user to directly add images
-	isProfile ? changeView(uploader) : changeView(onboarding);
+	isProfile ? changeView(uploader) : changeView(initialize);
 };
 
 ipcRenderer.on('imgAdded', (event, arg) => {
@@ -142,6 +142,9 @@ const uploadProfile = () => {
 	ipcRenderer.send('uploadProfile');
 };
 
+const onboardMe = () => {
+	changeView(onboarding);
+};
 const goBackTo = page => {
 	document.getElementById('view').removeAttribute('class');
 	page === 'adjust' ? changeView(adjust) : changeView(uploader);
