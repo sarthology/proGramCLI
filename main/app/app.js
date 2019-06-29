@@ -7,7 +7,6 @@ const { ipcRenderer } = require('electron');
 const path = require('path');
 const fs = require('fs-extra');
 const crypto = require('crypto');
-const mkdirp = require('mkdirp');
 const os = require('os');
 
 const homedir = os.homedir();
@@ -104,8 +103,8 @@ const saveProfile = () => {
 		const userFile = path.resolve(dataDir, 'profile.json');
 		const imagePath = path.resolve(imageDir, name + '.png');
 
-		if (!fs.existsSync(dataDir)) mkdirp.sync(dataDir);
-		if (!fs.existsSync(imageDir)) mkdirp.sync(imageDir);
+		if (!fs.existsSync(dataDir)) fs.ensureDirSync(dataDir);
+		if (!fs.existsSync(imageDir)) fs.ensureDirSync(imageDir);
 
 		const imageDataURI = newImage.replace(/^data:image\/png;base64,/, '');
 		fs.writeFileSync(imagePath, imageDataURI, 'base64');
