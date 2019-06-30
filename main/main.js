@@ -8,7 +8,7 @@ let win;
 
 function createWindow() {
 	win = new BrowserWindow({
-		title: 'Parista',
+		title: 'Program',
 		width: 400,
 		height: 700,
 		titleBarStyle: 'hidden',
