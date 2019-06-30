@@ -43,21 +43,7 @@ const initialize = readFileSync(
 );
 
 window.onload = event => {
-	if (fs.existsSync(config)) {
-		outputDir = JSON.parse(fs.readFileSync(config)).programPath;
-
-		const profile = path.resolve(outputDir, 'data', 'profile.json');
-		if (fs.existsSync(profile)) {
-			ipcRenderer.send('requestedSettings');
-			ipcRenderer.on('settings', (event, settingsRequested) => {
-				settingsRequested ? changeView(settings) : changeView(uploader);
-			});
-		} else {
-			changeView(onboarding);
-		}
-	} else {
-		changeView(initialize);
-	}
+	changeView(initialize);
 };
 
 ipcRenderer.on('imgAdded', (event, arg) => {
@@ -213,30 +199,44 @@ const uploadProfile = () => {
 };
 
 const onboardMe = () => {
-	ipcRenderer.send('getDirectory');
-	ipcRenderer.on('directoryAdded', (event, dir) => {
-		outputDir = path.resolve(dir, 'program');
+	if (fs.existsSync(config)) {
+		outputDir = JSON.parse(fs.readFileSync(config)).programPath;
 
-		const source = path.resolve(__dirname, '..', '..', 'program');
-
-		fs.copySync(source, outputDir);
-
-		if (!fs.existsSync(config)) {
-			fs.writeFileSync(
-				config,
-				JSON.stringify({
-					programPath: outputDir
-				})
-			);
+		const profile = path.resolve(outputDir, 'data', 'profile.json');
+		if (fs.existsSync(profile)) {
+			ipcRenderer.send('requestedSettings');
+			ipcRenderer.on('settings', (event, settingsRequested) => {
+				settingsRequested ? changeView(settings) : changeView(uploader);
+			});
+		} else {
+			changeView(onboarding);
 		}
+	} else {
+		ipcRenderer.send('getDirectory');
+		ipcRenderer.on('directoryAdded', (event, dir) => {
+			outputDir = path.resolve(dir, 'program');
 
-		changeView(onboarding);
-	});
+			const source = path.resolve(__dirname, '..', '..', 'program');
 
-	ipcRenderer.on('directoryNotAdded', () => {
-		document.getElementById('initializeMessage').textContent =
-			'Select program directory';
-	});
+			fs.copySync(source, outputDir);
+
+			if (!fs.existsSync(config)) {
+				fs.writeFileSync(
+					config,
+					JSON.stringify({
+						programPath: outputDir
+					})
+				);
+			}
+
+			changeView(onboarding);
+		});
+
+		ipcRenderer.on('directoryNotAdded', () => {
+			document.getElementById('initializeMessage').textContent =
+				'Select program directory';
+		});
+	}
 };
 
 const goBackTo = page => {
