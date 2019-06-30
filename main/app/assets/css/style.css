@@ -290,3 +290,36 @@ textarea:focus {
 .danob {
 	width: 75%;
 }
+.settings {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+.setting {
+	border-bottom: 1px solid #e3e3e3;
+	cursor: pointer;
+}
+.setting p {
+	padding-left: 35px;
+	font-weight: bold;
+}
+.setting-group {
+	font-size: 16px;
+	font-weight: bold;
+	padding-left: 15px;
+	border-bottom: 1px solid #e3e3e3;
+}
+.setting-group p {
+	margin: 15px 0;
+}
+.thanks-message {
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+}
+.thanks-img img {
+	width: 200px;
+	margin: 20px auto;
+}
+.thanks-img {
+	display: grid;
+}

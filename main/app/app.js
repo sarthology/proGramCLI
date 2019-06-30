@@ -33,6 +33,7 @@ const editor = readFileSync(path.resolve(__dirname, './views/editor.hbs'));
 const uploader = readFileSync(path.resolve(__dirname, './views/uploader.hbs'));
 const adjust = readFileSync(path.resolve(__dirname, './views/adjust.hbs'));
 const finish = readFileSync(path.resolve(__dirname, './views/finish.hbs'));
+const settings = readFileSync(path.resolve(__dirname, './views/settings.hbs'));
 const onboarding = readFileSync(
 	path.resolve(__dirname, './views/onboarding.hbs')
 );
