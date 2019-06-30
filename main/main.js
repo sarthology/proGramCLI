@@ -12,6 +12,7 @@ function createWindow() {
 		width: 400,
 		height: 700,
 		titleBarStyle: 'hidden',
+		resizable: false,
 		webPreferences: {
 			nodeIntegration: true
 		}
