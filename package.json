@@ -12,15 +12,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sarthology/proGram.git"
+		"url": "git+https://github.com/sarthology/proGramCLI.git"
 	},
 	"keywords": [],
 	"author": "Sarthak Sharma (https://sarthak.it)",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/sarthology/proGram/issues"
+		"url": "https://github.com/sarthology/proGramCLI/issues"
 	},
-	"homepage": "https://github.com/sarthology/proGram#readme",
+	"homepage": "https://github.com/sarthology/proGramCLI#readme",
 	"husky": {
 		"hooks": {
 			"pre-commit": "lint-staged"
@@ -33,7 +33,6 @@
 		]
 	},
 	"devDependencies": {
-		"electron": "4.0.1",
 		"eslint": "^5.16.0",
 		"eslint-config-prettier": "^4.2.0",
 		"eslint-plugin-prettier": "^3.1.0",
@@ -42,6 +41,7 @@
 		"prettier": "^1.17.1"
 	},
 	"dependencies": {
+		"electron": "4.0.1",
 		"croppie": "^2.6.4",
 		"fs-extra": "^8.1.0",
 		"handlebars": "^4.1.2",
