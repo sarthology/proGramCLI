@@ -3,8 +3,8 @@
 ### installing
 
 ```sh
-git clone https://github.com/sarthology/proGram \
-&& cd proGram \
+git clone https://github.com/sarthology/proGramCLI.git \
+&& cd proGramCLI \
 && npm install \
 && npm link
 ```
