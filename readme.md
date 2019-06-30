@@ -48,7 +48,8 @@ Feel free to contribute to this project and treat it like your own. 😊
 ### Useful Links
 
 <hr>
-Website: [https://sarthology.github.io/proGramCLI/](https://sarthology.github.io/proGramCLI/)
+
+* Website: [https://sarthology.github.io/proGramCLI/](https://sarthology.github.io/proGramCLI/)
 
 ### License
 
