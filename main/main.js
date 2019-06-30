@@ -2,9 +2,43 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
+const meow = require('meow');
 
 const main = path.join(__dirname, '..', 'main', 'app/index.html');
 let win;
+
+const cli = meow(
+	`
+    Usage
+      $ program
+
+    Options
+      --settings, -s  Open settings page to edit profile
+
+    Examples
+      $ program
+
+      $ program --settings
+`,
+	{
+		flags: {
+			settings: {
+				type: 'boolean',
+				alias: 's'
+			},
+			version: {
+				alias: 'v'
+			},
+			help: {
+				alias: 'h'
+			}
+		}
+	}
+);
+
+const {
+	flags: { settings }
+} = cli;
 
 function createWindow() {
 	win = new BrowserWindow({
@@ -12,7 +46,7 @@ function createWindow() {
 		width: 400,
 		height: 700,
 		resizable: false,
-		frame: false,
+		// frame: false,
 		titleBarStyle: 'hidden',
 		webPreferences: {
 			nodeIntegration: true
@@ -21,6 +55,10 @@ function createWindow() {
 
 	win.loadFile(main);
 }
+
+ipcMain.on('requestedSettings', () => {
+	win.webContents.send('settings', settings);
+});
 
 ipcMain.on('getDirectory', (event, arg) => {
 	dialog.showOpenDialog({ properties: ['openDirectory'] }, dir => {

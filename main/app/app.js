@@ -47,7 +47,14 @@ window.onload = event => {
 		outputDir = JSON.parse(fs.readFileSync(config)).programPath;
 
 		const profile = path.resolve(outputDir, 'data', 'profile.json');
-		fs.existsSync(profile) ? changeView(uploader) : changeView(onboarding);
+		if (fs.existsSync(profile)) {
+			ipcRenderer.send('requestedSettings');
+			ipcRenderer.on('settings', (event, settingsRequested) => {
+				settingsRequested ? changeView(settings) : changeView(uploader);
+			});
+		} else {
+			changeView(onboarding);
+		}
 	} else {
 		changeView(initialize);
 	}
