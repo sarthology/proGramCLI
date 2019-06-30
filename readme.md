@@ -30,8 +30,7 @@ $ program
 It's really easy, just follow these steps below
 
 ```sh
-$ git clone https://github.com/sarthology/
-$ proGramCLI.git
+$ git clone https://github.com/sarthology/proGramCLI.git
 $ cd proGramCLI
 $ npm install
 $ npm dev
