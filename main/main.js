@@ -41,7 +41,10 @@ ipcMain.on('uploadProfile', (event, arg) => {
 app.on('ready', createWindow);
 
 // Checks for available update and returns an instance
-const notifier = updateNotifier({ pkg });
+const notifier = updateNotifier({
+	pkg,
+	updateCheckInterval: 1000 * 60 * 60 * 1
+});
 
 // Notify using the built-in convenience method
 notifier.notify();

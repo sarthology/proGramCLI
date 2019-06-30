@@ -1,6 +1,6 @@
 {
-	"name": "program",
-	"version": "0.0.2",
+	"name": "programcli",
+	"version": "0.0.4",
 	"description": "",
 	"main": "main/main.js",
 	"bin": {
