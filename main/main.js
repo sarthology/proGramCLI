@@ -8,7 +8,7 @@ let win;
 
 function createWindow() {
 	win = new BrowserWindow({
-		title: 'Parista',
+		title: 'Program',
 		width: 400,
 		height: 700,
 		resizable: false,
@@ -24,7 +24,11 @@ function createWindow() {
 
 ipcMain.on('getDirectory', (event, arg) => {
 	dialog.showOpenDialog({ properties: ['openDirectory'] }, dir => {
-		if (dir) win.webContents.send('directoryAdded', dir[0]);
+		if (dir) {
+			win.webContents.send('directoryAdded', dir[0]);
+		} else {
+			win.webContents.send('directoryNotAdded');
+		}
 	});
 });
 
@@ -43,7 +47,10 @@ ipcMain.on('uploadProfile', (event, arg) => {
 app.on('ready', createWindow);
 
 // Checks for available update and returns an instance
-const notifier = updateNotifier({ pkg });
+const notifier = updateNotifier({
+	pkg,
+	updateCheckInterval: 1000 * 60 * 60 * 1
+});
 
 // Notify using the built-in convenience method
 notifier.notify();
