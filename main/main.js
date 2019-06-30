@@ -11,6 +11,8 @@ function createWindow() {
 		title: 'Parista',
 		width: 400,
 		height: 700,
+		resizable: false,
+		frame: false,
 		titleBarStyle: 'hidden',
 		webPreferences: {
 			nodeIntegration: true
