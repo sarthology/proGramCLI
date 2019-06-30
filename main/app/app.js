@@ -287,3 +287,7 @@ const openBrowser = () => {
 const contribute = () => {
 	shell.openItem('https://github.com/sarthology/proGramCLI');
 };
+
+const tweet = () => {
+	shell.openItem('https://twitter.com/sarthology');
+};
