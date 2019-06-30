@@ -323,3 +323,9 @@ textarea:focus {
 .thanks-img {
 	display: grid;
 }
+.add-more {
+	background: white;
+	color: #696565;
+	margin-top: 10px;
+	border: 1px solid #bbbaba;
+}
