@@ -12,6 +12,7 @@ function createWindow() {
 		width: 400,
 		height: 700,
 		titleBarStyle: 'hidden',
+		resizable: false,
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -22,7 +23,11 @@ function createWindow() {
 
 ipcMain.on('getDirectory', (event, arg) => {
 	dialog.showOpenDialog({ properties: ['openDirectory'] }, dir => {
-		if (dir) win.webContents.send('directoryAdded', dir[0]);
+		if (dir) {
+			win.webContents.send('directoryAdded', dir[0]);
+		} else {
+			win.webContents.send('directoryNotAdded');
+		}
 	});
 });
 
