@@ -3,8 +3,6 @@
 const { spawn } = require('child_process');
 const electron = require('electron');
 const path = require('path');
-const fs = require('fs');
-const os = require('os');
 
 const serverPath = path.join(__dirname, '../main/main.js');
 
