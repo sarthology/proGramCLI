@@ -22,7 +22,11 @@ function createWindow() {
 
 ipcMain.on('getDirectory', (event, arg) => {
 	dialog.showOpenDialog({ properties: ['openDirectory'] }, dir => {
-		if (dir) win.webContents.send('directoryAdded', dir[0]);
+		if (dir) {
+			win.webContents.send('directoryAdded', dir[0]);
+		} else {
+			win.webContents.send('directoryNotAdded');
+		}
 	});
 });
 

@@ -72,23 +72,6 @@ ipcRenderer.on('profileAdded', (event, arg) => {
 	});
 });
 
-ipcRenderer.on('directoryAdded', (event, dir) => {
-	outputDir = path.resolve(dir, 'program');
-
-	const source = path.resolve(__dirname, '..', '..', 'program');
-
-	fs.copySync(source, outputDir);
-
-	if (!fs.existsSync(config)) {
-		fs.writeFileSync(
-			config,
-			JSON.stringify({
-				programPath: outputDir
-			})
-		);
-	}
-});
-
 const changeFilter = selectedFilter => {
 	let canvas = document.getElementById('canvas');
 	canvas.classList = '';
@@ -201,7 +184,29 @@ const uploadProfile = () => {
 
 const onboardMe = () => {
 	ipcRenderer.send('getDirectory');
-	changeView(onboarding);
+	ipcRenderer.on('directoryAdded', (event, dir) => {
+		outputDir = path.resolve(dir, 'program');
+
+		const source = path.resolve(__dirname, '..', '..', 'program');
+
+		fs.copySync(source, outputDir);
+
+		if (!fs.existsSync(config)) {
+			fs.writeFileSync(
+				config,
+				JSON.stringify({
+					programPath: outputDir
+				})
+			);
+		}
+
+		changeView(onboarding);
+	});
+
+	ipcRenderer.on('directoryNotAdded', () => {
+		document.getElementById('initializeMessage').textContent =
+			'Select program directory';
+	});
 };
 
 const goBackTo = page => {
@@ -222,6 +227,8 @@ const changeView = view => {
 };
 
 const addMore = () => changeView(uploader);
+
+const gotoSettings = () => changeView(settings);
 
 const cropImage = () => {
 	document.getElementById('view').setAttribute('class', 'darkBackground');
