@@ -1,8 +1,11 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
+const updateNotifier = require('update-notifier');
+const pkg = require('../package.json');
 
 const main = path.join(__dirname, '..', 'main', 'app/index.html');
 let win;
+
 function createWindow() {
 	win = new BrowserWindow({
 		title: 'Parista',
@@ -36,3 +39,9 @@ ipcMain.on('uploadProfile', (event, arg) => {
 });
 
 app.on('ready', createWindow);
+
+// Checks for available update and returns an instance
+const notifier = updateNotifier({ pkg });
+
+// Notify using the built-in convenience method
+notifier.notify();

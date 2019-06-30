@@ -1,6 +1,6 @@
 {
-	"name": "program",
-	"version": "0.0.1",
+	"name": "programcli",
+	"version": "0.0.2",
 	"description": "",
 	"main": "main/main.js",
 	"bin": {
@@ -44,6 +44,7 @@
 		"electron": "4.0.1",
 		"croppie": "^2.6.4",
 		"fs-extra": "^8.1.0",
-		"handlebars": "^4.1.2"
+		"handlebars": "^4.1.2",
+		"update-notifier": "^3.0.0"
 	}
 }
