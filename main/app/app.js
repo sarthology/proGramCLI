@@ -96,7 +96,6 @@ const saveProfile = () => {
 		const name = document.getElementById('name').value;
 		const bio = document.getElementById('bio').value;
 
-		console.log(outputDir);
 		const dataDir = path.resolve(outputDir, 'data');
 		const imageDir = path.resolve(outputDir, 'assets', 'images');
 
@@ -120,6 +119,30 @@ const saveProfile = () => {
 		fs.writeFileSync(userFile, JSON.stringify(userData, null, 4));
 
 		changeView(uploader);
+	});
+};
+
+const editProfile = () => {
+	changeView(onboarding);
+
+	const profileFile = path.resolve(outputDir, 'data', 'profile.json');
+	const profileData = fs.readFileSync(profileFile);
+	const profile = JSON.parse(profileData);
+
+	document.getElementById('bio').value = profile.bio;
+	document.getElementById('name').value = profile.name;
+
+	document.getElementsByClassName('upload')[0].style = 'display:none';
+	document.getElementById('adjustProfile').style = 'display:block';
+
+	profileAdjust = new Croppie(document.getElementById('adjustProfile'), {
+		url: path.resolve(outputDir, profile.profilePic),
+		enableOrientation: true,
+		viewport: {
+			width: 150,
+			height: 150,
+			type: 'circle'
+		}
 	});
 };
 
