@@ -9,6 +9,9 @@ const fs = require('fs-extra');
 const crypto = require('crypto');
 const os = require('os');
 
+// utils
+const generator = require('./util/generator');
+
 const homedir = os.homedir();
 const config = path.resolve(homedir, '.programrc.json');
 
@@ -162,6 +165,23 @@ const showProfile = () => {
 	changeView(generate);
 };
 
+const generateIndex = () => {
+	const feedFile = path.resolve(outputDir, 'data', 'feed.json');
+	const profileFile = path.resolve(outputDir, 'data', 'profile.json');
+	const index = path.resolve(outputDir, 'index.html');
+
+	const feedData = fs.readFileSync(feedFile);
+	const profileData = fs.readFileSync(profileFile);
+
+	const feed = JSON.parse(feedData);
+	const profile = JSON.parse(profileData);
+
+	const html = generator(profile, feed);
+
+	fs.writeFileSync(index, html);
+	changeView(finish);
+};
+
 const imgUpload = () => {
 	ipcRenderer.send('getImage');
 };
@@ -199,6 +219,8 @@ const changeView = view => {
 	document.getElementById('view').innerHTML = result;
 	if (view === adjust) cropImage(instaImage);
 };
+
+const addMore = () => changeView(uploader);
 
 const cropImage = () => {
 	document.getElementById('view').setAttribute('class', 'darkBackground');
