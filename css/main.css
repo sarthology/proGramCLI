@@ -1,78 +1,83 @@
 @font-face {
-  font-family: 'lato,sans-serif';
-  src: url('../fonts/Lato-Medium.ttf');
+	font-family: 'lato,sans-serif';
+	src: url('../fonts/Lato-Medium.ttf');
 }
 @font-face {
-  font-family: 'blenda';
-  src: url('../fonts/BlendaScript.otf');
+	font-family: 'blenda';
+	src: url('../fonts/BlendaScript.otf');
 }
 body {
-  font-family: 'lato,sans-serif';
-  margin: 0;
+	font-family: 'lato,sans-serif';
+	margin: 0;
 }
 .program-logo {
-  width: 50px;
-  height: 62px;
+	width: 50px;
+	height: 62px;
 }
 .program-logoheading {
-  font-family: 'blenda';
-  margin-bottom: 0px;
-  font-size: 1.5em;
-  margin-top: 24px;
+	font-family: 'blenda';
+	margin-bottom: 0px;
+	font-size: 1.5em;
+	margin-top: 24px;
 }
 .display-flex {
-  display: flex;
+	display: flex;
 }
 .section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100vh;
-  overflow: hidden;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	height: 100vh;
+	overflow: hidden;
 }
 .left h1 {
-  font-size: 2em;
-  margin-top: 40px;
-  font-weight: 500;
+	font-size: 2em;
+	margin-top: 40px;
+	font-weight: 500;
 }
 .left h2 {
-  font-size: 1.3em;
-  font-weight: 300;
+	font-size: 1.3em;
+	font-weight: 300;
 }
 .left p {
-  color: #808080;
-  line-height: 24px;
-  font-size: 0.9em;
-  font-weight: 100;
-  margin-top: 35px;
-  margin-bottom: 35px;
+	color: #808080;
+	line-height: 24px;
+	font-size: 0.9em;
+	font-weight: 100;
+	margin-top: 35px;
+	margin-bottom: 35px;
 }
 .left span {
-  background-color: #f6f8fa;
-  padding: 5px;
-  margin-top: 10px;
-  display: inline-block;
+	background-color: #f6f8fa;
+	padding: 5px;
+	margin-top: 10px;
+	display: inline-block;
 }
 .main-video {
-  height: 100vh;
-  /* width: 100%; */
+	height: 100%;
+	/* width: 100%; */
 }
 .text-div {
-  padding: 20px 50px;
-  overflow-y: scroll;
+	width: 50vw;
+	padding: 20px 50px;
+	overflow-y: scroll;
 }
 .text-div {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 .text-div::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 .video-div {
-  height: 100vh;
+	height: 100vh;
+	width: 50vw;
 }
 @media (max-width: 991px) {
-  .section {
-    width: 100%;
-    grid-template-columns: 1fr;
-  }
+	.section {
+		width: 100%;
+		grid-template-columns: 1fr;
+	}
+	.video-div {
+		grid-column: 2;
+	}
 }
