@@ -288,6 +288,10 @@ const contribute = () => {
 	shell.openItem('https://github.com/sarthology/proGramCLI');
 };
 
+const support = () => {
+	shell.openItem('https://www.paypal.me/Sarthakit');
+};
+
 const tweet = () => {
 	shell.openItem('https://twitter.com/sarthology');
 };
