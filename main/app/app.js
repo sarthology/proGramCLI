@@ -241,3 +241,7 @@ const rotateImage = () => {
 const openFinder = () => {
 	shell.showItemInFolder(outputDir);
 };
+
+const openBrowser = () => {
+	shell.openItem(outputDir + '/index.html');
+};
