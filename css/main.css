@@ -82,6 +82,9 @@ body {
 .video-div{
 	height: 100vh;
 }
+.program-phonelogo{
+	display:none;
+}
 @media (max-width: 991px) {
 	.section {
 		width: 100%;
@@ -92,13 +95,21 @@ body {
 	}
 	.main-video{
 		width:100%;
+	}
+	.video-div{
 		height:100%;
 	}
-	.program-logo{
+	.program-phonelogo{
 		display:block;
 	}
 	.program-websitelogo{
 		display:none;
+	}
+	.program-logoheading {
+    	margin-top: 10px;
+	}
+	.display-flex{
+		justify-content: center;
 	}
 }
 
