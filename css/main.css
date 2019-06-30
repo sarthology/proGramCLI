@@ -1,66 +1,70 @@
 @font-face {
-	font-family: 'lato,sans-serif';
-	src: url('../fonts/Lato-Medium.ttf');
+	font-family: 'roboto';
+	src: url('../fonts/Roboto-Thin.ttf');
 }
 @font-face {
 	font-family: 'blenda';
 	src: url('../fonts/BlendaScript.otf');
 }
 body {
-	font-family: 'lato,sans-serif';
 	margin: 0;
+	font-family: sans-serif;
 }
 .program-logo {
 	width: 50px;
 	height: 62px;
+  	animation-name: jello;
+	transform-origin: center;
+ 	animation-duration: 1s;
+	animation-iteration-count:infinite;
 }
 .program-logoheading {
 	font-family: 'blenda';
 	margin-bottom: 0px;
-	font-size: 1.5em;
-	margin-top: 24px;
+    font-size: 36px;
+    margin-top: 15px;
 }
 .display-flex {
 	display: flex;
 }
 .section {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1.4fr 1fr;
 	height: 100vh;
 	overflow: hidden;
 }
 .left h1 {
 	font-size: 2em;
 	margin-top: 40px;
-	font-weight: 500;
+	font-weight: 800;
 }
 .left h2 {
 	font-size: 1.3em;
+	font-family: 'roboto';
 	font-weight: 300;
 }
 .left p {
-	color: #808080;
+	color: #3e3e3e;
 	line-height: 24px;
 	font-size: 0.9em;
 	font-weight: 100;
-	margin-top: 25px;
-}
-ul {
-	padding-top: 0;
-	margin-top: 0;
-	color: #808080;
+	margin-top: 17px;
+	font-family: sans-serif;
 }
 .left span {
 	background-color: #f6f8fa;
-	padding: 30px;
-	margin-top: 10px;
-	display: inline-block;
-	font-size: 1.1rem;
+    padding: 18px;
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 16px;
+    color: #000;
+    font-weight: 100;
+    font-family: 'hack';
+    line-height: 25px;
 }
-.main-video {
+/* .main-video {
 	height: 100%;
-	/* width: 100%; */
-}
+} */
 .text-div {
 	padding: 20px 50px;
 	overflow-y: scroll;
@@ -73,17 +77,71 @@ ul {
 	display: none;
 }
 .video-div {
+	overflow:hidden;
+}
+.video-div{
 	height: 100vh;
-	width: 50vw;
 }
 @media (max-width: 991px) {
 	.section {
 		width: 100%;
 		grid-template-columns: 1fr;
+		display:flex;
+		flex-direction:column-reverse;
+		height:100%;
+	}
+	.main-video{
+		width:100%;
+		height:100%;
+	}
+	.program-logo{
+		display:block;
+	}
+	.program-websitelogo{
+		display:none;
 	}
 }
-@media (max-width: 768px) {
-	.video-div {
-		display: none;
-	}
+
+ul>li{
+	color: #3e3e3e;
+	line-height: 24px;
+	font-size: 0.9em;
+	font-weight: 100;
+	font-family: sans-serif;
+}
+@keyframes jello {
+from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  15% {
+    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+    transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+  }
+
+  30% {
+    -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+  }
+
+  45% {
+    -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+    transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+  }
+
+  60% {
+    -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+  }
+
+  75% {
+    -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+    transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }
