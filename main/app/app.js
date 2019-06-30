@@ -3,7 +3,7 @@
 //Dependencies
 const handlebars = require('handlebars');
 const Croppie = require('croppie');
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, shell } = require('electron');
 const path = require('path');
 const fs = require('fs-extra');
 const crypto = require('crypto');
@@ -236,4 +236,8 @@ const cropImage = () => {
 };
 const rotateImage = () => {
 	viewport.rotate(90);
+};
+
+const openFinder = () => {
+	shell.showItemInFolder(outputDir);
 };
