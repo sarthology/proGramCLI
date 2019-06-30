@@ -62,7 +62,6 @@ ul {
 	/* width: 100%; */
 }
 .text-div {
-	width: 50vw;
 	padding: 20px 50px;
 	overflow-y: scroll;
 }
@@ -82,7 +81,9 @@ ul {
 		width: 100%;
 		grid-template-columns: 1fr;
 	}
+}
+@media (max-width: 768px) {
 	.video-div {
-		grid-column: 2;
+		display: none;
 	}
 }
