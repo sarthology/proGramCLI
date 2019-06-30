@@ -66,6 +66,17 @@ h4 {
 figure {
   margin: 0;
 }
+.links{
+  display: flex;
+  width:100%;
+  flex-wrap: wrap;
+}
+.links img{
+  width: 25px;
+  height: 25px;
+  margin-right: 13px;
+  margin-bottom: 10px;
+}
 .divider {
   height: 50px;
   border-top: 1px solid #e3e3e3;
@@ -90,6 +101,9 @@ figure {
   .picture {
     margin: 0 auto;
     margin-top: 11px;
+  }
+  .links{
+    justify-content: center;
   }
   .profile {
     grid-template-columns: 1fr;

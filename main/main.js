@@ -11,8 +11,9 @@ function createWindow() {
 		title: 'Program',
 		width: 400,
 		height: 700,
-		titleBarStyle: 'hidden',
 		resizable: false,
+		frame: false,
+		titleBarStyle: 'hidden',
 		webPreferences: {
 			nodeIntegration: true
 		}
