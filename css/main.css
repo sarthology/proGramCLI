@@ -43,14 +43,19 @@ body {
 	line-height: 24px;
 	font-size: 0.9em;
 	font-weight: 100;
-	margin-top: 35px;
-	margin-bottom: 35px;
+	margin-top: 25px;
+}
+ul {
+	padding-top: 0;
+	margin-top: 0;
+	color: #808080;
 }
 .left span {
 	background-color: #f6f8fa;
-	padding: 5px;
+	padding: 30px;
 	margin-top: 10px;
 	display: inline-block;
+	font-size: 1.1rem;
 }
 .main-video {
 	height: 100%;
