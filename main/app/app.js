@@ -283,3 +283,7 @@ const openFinder = () => {
 const openBrowser = () => {
 	shell.openItem(outputDir + '/index.html');
 };
+
+const contribute = () => {
+	shell.openItem('https://github.com/sarthology/proGramCLI');
+};
