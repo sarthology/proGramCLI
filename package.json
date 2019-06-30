@@ -1,5 +1,5 @@
 {
-	"name": "program",
+	"name": "programcli",
 	"version": "0.0.2",
 	"description": "",
 	"main": "main/main.js",
