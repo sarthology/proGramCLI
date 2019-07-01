@@ -10,6 +10,12 @@
 		"start": "electron main/main.js --not-packaged=true",
 		"dev": "electron main/main.js --not-packaged=true --debug=true"
 	},
+	"files": [
+		"bin",
+		"images",
+		"main",
+		"program"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sarthology/proGramCLI.git"
