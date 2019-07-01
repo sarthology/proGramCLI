@@ -216,7 +216,7 @@ const onboardMe = () => {
 		ipcRenderer.on('directoryAdded', (event, dir) => {
 			outputDir = path.resolve(dir, 'program');
 
-			const source = path.resolve(__dirname, '..', '..', 'proGram');
+			const source = path.resolve(__dirname, '..', '..', 'program');
 
 			fs.copySync(source, outputDir);
 
