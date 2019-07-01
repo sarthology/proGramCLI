@@ -30,8 +30,10 @@ It's really easy, just follow these steps below
 $ git clone https://github.com/sarthology/proGramCLI.git
 $ cd proGramCLI
 $ npm install
-$ npm dev
+$ npm link
 ```
+
+Now to run program you can either `npm run dev` or simply type `program`
 
 That's it.
 
@@ -41,7 +43,7 @@ Feel free to contribute to this project and treat it like your own. 😊
 
 ## Useful Links
 
-* Website: [https://sarthology.github.io/proGramCLI/](https://sarthology.github.io/proGramCLI/)
+- Website: [https://sarthology.github.io/proGramCLI/](https://sarthology.github.io/proGramCLI/)
 
 ## License
 
