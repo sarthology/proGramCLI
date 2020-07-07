@@ -48,7 +48,7 @@
 	},
 	"dependencies": {
 		"croppie": "^2.6.4",
-		"electron": "4.0.1",
+		"electron": "9.1.0",
 		"fs-extra": "^8.1.0",
 		"handlebars": "^4.1.2",
 		"meow": "^5.0.0",
